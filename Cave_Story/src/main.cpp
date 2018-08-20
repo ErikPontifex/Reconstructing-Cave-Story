@@ -6,10 +6,13 @@
 //  Copyright © 2018 Erik Pontifex. All rights reserved.
 //
 
+#include "game.hpp"
 #include <iostream>
+using namespace std;
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main(int, char**) {
+    cout << "starting\n";
+    Game game;
+    
     return 0;
 }

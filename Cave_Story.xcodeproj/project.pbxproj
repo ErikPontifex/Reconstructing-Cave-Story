@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		076D6332212A5305005804A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D6331212A5305005804A4 /* main.cpp */; };
+		076D633A212A534C005804A4 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D6339212A534C005804A4 /* SDL2.framework */; };
+		076D6342212A5614005804A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D6340212A5614005804A4 /* main.cpp */; };
+		076D6346212A5667005804A4 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D6344212A5667005804A4 /* game.cpp */; };
+		076D634F212A5AB1005804A4 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = 076D634E212A5AB1005804A4 /* makefile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +27,11 @@
 
 /* Begin PBXFileReference section */
 		076D632E212A5305005804A4 /* Cave_Story */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Cave_Story; sourceTree = BUILT_PRODUCTS_DIR; };
-		076D6331212A5305005804A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		076D6339212A534C005804A4 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		076D6340212A5614005804A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		076D6344212A5667005804A4 /* game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
+		076D6345212A5667005804A4 /* game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = game.hpp; sourceTree = "<group>"; };
+		076D634E212A5AB1005804A4 /* makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				076D633A212A534C005804A4 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +51,7 @@
 			children = (
 				076D6330212A5305005804A4 /* Cave_Story */,
 				076D632F212A5305005804A4 /* Products */,
+				076D6338212A534C005804A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +66,44 @@
 		076D6330212A5305005804A4 /* Cave_Story */ = {
 			isa = PBXGroup;
 			children = (
-				076D6331212A5305005804A4 /* main.cpp */,
+				076D634A212A57AB005804A4 /* content */,
+				076D6349212A576E005804A4 /* gen */,
+				076D6343212A564C005804A4 /* src */,
+				076D634E212A5AB1005804A4 /* makefile */,
 			);
 			path = Cave_Story;
+			sourceTree = "<group>";
+		};
+		076D6338212A534C005804A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				076D6339212A534C005804A4 /* SDL2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		076D6343212A564C005804A4 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				076D6340212A5614005804A4 /* main.cpp */,
+				076D6344212A5667005804A4 /* game.cpp */,
+				076D6345212A5667005804A4 /* game.hpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		076D6349212A576E005804A4 /* gen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = gen;
+			sourceTree = "<group>";
+		};
+		076D634A212A57AB005804A4 /* content */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +163,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				076D6332212A5305005804A4 /* main.cpp in Sources */,
+				076D6342212A5614005804A4 /* main.cpp in Sources */,
+				076D6346212A5667005804A4 /* game.cpp in Sources */,
+				076D634F212A5AB1005804A4 /* makefile in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +279,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -241,6 +291,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
