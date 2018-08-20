@@ -76,6 +76,10 @@ void Game::eventLoop() {
             SDL_Delay(1000/kFps - elapsed_time_ms);
         }
         
+        const float seconds_per_frame = (SDL_GetTicks() - start_time_ms) / 1000.0;
+        const float fps = 1 / (seconds_per_frame);
+        printf("fps=%f\n", fps);
+        
     }
     
     cout << "Exiting loop\n";
