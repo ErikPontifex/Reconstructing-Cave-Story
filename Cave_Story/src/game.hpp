@@ -10,8 +10,9 @@
 #define game_hpp
 
 #include <stdio.h>
+#include "sprite.hpp"
 
-struct SDL_Window;
+class Graphics;
 
 struct Game {
     Game();
@@ -20,9 +21,11 @@ struct Game {
 private:
 
     void eventLoop();
-    void update();
-    void draw();
-    SDL_Window* screen_;
+    void update(float elapsedTime);
+    void draw(Graphics &graphics);
+    void printFps(int start_time_ms);
+    
+    Sprite _player;
 };
 
 #endif /* game_hpp */
