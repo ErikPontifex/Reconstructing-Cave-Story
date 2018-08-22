@@ -42,9 +42,7 @@ void Game::eventLoop() {
     SDL_Event event;
     Input input;
     
-    _player = AnimatedSprite(graphics, "content/sprites/MyChar.png", 0, 0, 16, 16, 100, 100, 100);
-    _player.setupAnimations();
-    _player.playAnimation("RunRight");
+    _player = Player(graphics, 100, 100);
     
     bool running = true;
     
@@ -74,6 +72,18 @@ void Game::eventLoop() {
             if (input.wasKeyPressed(SDL_SCANCODE_ESCAPE)) {
                 running = false;
             }
+            else if (input.isKeyHeld(SDL_SCANCODE_LEFT)) {
+                _player.moveLeft();
+            }
+            else if (input.isKeyHeld(SDL_SCANCODE_RIGHT)) {
+                _player.moveRight();
+            }
+            
+            if (!input.isKeyHeld(SDL_SCANCODE_LEFT) &&
+                !input.isKeyHeld(SDL_SCANCODE_RIGHT)) {
+                _player.stopMoving();
+            }
+            
         }
         
         // This loop lasts 1/60th of a second
@@ -100,7 +110,7 @@ void Game::update(float elapsedTime) {
 void Game::draw(Graphics &graphics) {
     graphics.clear();
     
-    _player.draw(graphics, 100, 100);
+    _player.draw(graphics);
     graphics.flip();
     
 }

@@ -46,10 +46,6 @@ public:
     // Draw sprite to screen
     void draw(Graphics &graphics, int x, int y);
   
-    // Sets up all animations for sprite
-    // Required function
-    
-    virtual void setupAnimations();
     
 protected:
     
@@ -83,7 +79,12 @@ protected:
     
     // Logic that occurs when an animation ends
     
-    virtual void animationDone(string currentAnimation);
+    virtual void animationDone(string currentAnimation) = 0;
+    
+    // Sets up all animations for sprite
+    // Required function
+    
+    virtual void setupAnimations() = 0;
     
     
 private:

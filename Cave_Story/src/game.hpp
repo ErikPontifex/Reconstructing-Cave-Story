@@ -10,7 +10,7 @@
 #define game_hpp
 
 #include <stdio.h>
-#include "animatedSprite.hpp"
+#include "player.hpp"
 
 class Graphics;
 
@@ -25,7 +25,7 @@ private:
     void draw(Graphics &graphics);
     void printFps(int start_time_ms);
     
-    AnimatedSprite _player;
+    Player _player;
 };
 
 #endif /* game_hpp */

@@ -15,8 +15,8 @@ using namespace globals;
 Graphics::Graphics() {
     SDL_CreateWindowAndRenderer(kScreenWidth,
                                 kScreenHeight,
-                                0,
-//                                SDL_WINDOW_FULLSCREEN_DESKTOP,
+//                                0,
+                                SDL_WINDOW_FULLSCREEN_DESKTOP,
                                 &_window,
                                 &_renderer);
     SDL_SetWindowTitle(_window, "Cave Story");
