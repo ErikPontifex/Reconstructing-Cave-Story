@@ -52,13 +52,13 @@ void Game::eventLoop() {
         input.beginNewFrame();
         
         while (SDL_PollEvent(&event)) {
-            cout << event.type << "\n";
+//            cout << event.type << "\n";
             switch (event.type) {
                 case SDL_QUIT:
                     running = false;
                     break;
                 case SDL_KEYDOWN:
-                    cout << event.key.keysym.sym;
+//                    cout << event.key.keysym.sym;
                     if (event.key.repeat == 0) {
                         input.keyDownEvent(event);
                     }
@@ -71,6 +71,9 @@ void Game::eventLoop() {
             }
             if (input.wasKeyPressed(SDL_SCANCODE_ESCAPE)) {
                 running = false;
+            }
+            else if (input.isKeyHeld(SDL_SCANCODE_LEFT) && input.isKeyHeld(SDL_SCANCODE_RIGHT)) {
+                _player.stopMoving();
             }
             else if (input.isKeyHeld(SDL_SCANCODE_LEFT)) {
                 _player.moveLeft();

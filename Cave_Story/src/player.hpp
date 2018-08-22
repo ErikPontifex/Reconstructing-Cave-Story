@@ -41,7 +41,8 @@ public:
     virtual void setupAnimations();
     
 private:
-    float _dx, _dy;
+    float _dx, _dy, _acceleration_x, _velocity_x;
+    
     
     Direction _facing;
 };
