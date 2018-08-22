@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0767BAD7212DBC7E005E5E14 /* level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0767BAD5212DBC7E005E5E14 /* level.cpp */; };
 		076D633A212A534C005804A4 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D6339212A534C005804A4 /* SDL2.framework */; };
 		076D6342212A5614005804A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D6340212A5614005804A4 /* main.cpp */; };
 		076D6346212A5667005804A4 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D6344212A5667005804A4 /* game.cpp */; };
@@ -32,6 +33,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0767BAD5212DBC7E005E5E14 /* level.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = level.cpp; sourceTree = "<group>"; };
+		0767BAD6212DBC7E005E5E14 /* level.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = level.hpp; sourceTree = "<group>"; };
+		0767BAD9212DBF66005E5E14 /* bkBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bkBlue.png; sourceTree = "<group>"; };
 		076D632E212A5305005804A4 /* Cave_Story */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Cave_Story; sourceTree = BUILT_PRODUCTS_DIR; };
 		076D6339212A534C005804A4 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		076D6340212A5614005804A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -71,6 +75,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0767BAD8212DBF1E005E5E14 /* backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				0767BAD9212DBF66005E5E14 /* bkBlue.png */,
+				07B573A3212B1935007924D0 /* bkBlue.bmp */,
+			);
+			path = backgrounds;
+			sourceTree = "<group>";
+		};
 		076D6325212A5305005804A4 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +138,8 @@
 				07C9382C212C8DA700D7A816 /* animatedSprite.hpp */,
 				07C9382E212CF0A800D7A816 /* player.cpp */,
 				07C9382F212CF0A800D7A816 /* player.hpp */,
+				0767BAD5212DBC7E005E5E14 /* level.cpp */,
+				0767BAD6212DBC7E005E5E14 /* level.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -139,8 +154,8 @@
 		076D634A212A57AB005804A4 /* content */ = {
 			isa = PBXGroup;
 			children = (
+				0767BAD8212DBF1E005E5E14 /* backgrounds */,
 				07BD84C0212BB492004AFA3B /* sprites */,
-				07B573A3212B1935007924D0 /* bkBlue.bmp */,
 				07B573A2212B1935007924D0 /* MyChar.bmp */,
 				07B573A4212B1935007924D0 /* PrtCave.bmp */,
 				07B573A1212B1935007924D0 /* README.md */,
@@ -216,6 +231,7 @@
 			files = (
 				07C93830212CF0A800D7A816 /* player.cpp in Sources */,
 				07C9382D212C8DA700D7A816 /* animatedSprite.cpp in Sources */,
+				0767BAD7212DBC7E005E5E14 /* level.cpp in Sources */,
 				076D6342212A5614005804A4 /* main.cpp in Sources */,
 				076D6346212A5667005804A4 /* game.cpp in Sources */,
 				07BD84C7212BBA19004AFA3B /* sprite.cpp in Sources */,

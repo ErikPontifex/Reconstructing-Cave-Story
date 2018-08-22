@@ -43,6 +43,7 @@ void Game::eventLoop() {
     Input input;
     
     _player = Player(graphics, 100, 100);
+    _level = Level("map 1", Vector2(100, 100), graphics);
     
     bool running = true;
     
@@ -108,11 +109,13 @@ void Game::eventLoop() {
 void Game::update(float elapsedTime) {
 //    printf("elapsedTime = %f\n", elapsedTime);
     _player.update(elapsedTime);
+    _level.update(elapsedTime);
 }
 
 void Game::draw(Graphics &graphics) {
     graphics.clear();
     
+    _level.draw(graphics);
     _player.draw(graphics);
     graphics.flip();
     

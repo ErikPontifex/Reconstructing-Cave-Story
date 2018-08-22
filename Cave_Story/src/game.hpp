@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "player.hpp"
+#include "level.hpp"
 
 class Graphics;
 
@@ -26,6 +27,7 @@ private:
     void printFps(int start_time_ms);
     
     Player _player;
+    Level _level;
 };
 
 #endif /* game_hpp */
