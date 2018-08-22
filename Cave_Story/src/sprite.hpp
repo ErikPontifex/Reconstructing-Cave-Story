@@ -15,7 +15,9 @@
 
 struct Graphics;
 
-struct Sprite {
+class Sprite {
+
+public:
     Sprite();
     Sprite(Graphics &graphics,
            const std::string &filepath,
@@ -29,11 +31,10 @@ struct Sprite {
     virtual ~Sprite();
     virtual void update();
     void draw(Graphics &graphics, int x, int y);
-    
-private:
     SDL_Rect _sourceRect;
     SDL_Texture* _spriteSheet;
     
+private:
     float _x, _y;
 };
 

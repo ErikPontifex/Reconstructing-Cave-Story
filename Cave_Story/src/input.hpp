@@ -21,8 +21,17 @@ struct Input {
     bool wasKeyReleased(SDL_Scancode key);
     bool isKeyHeld(SDL_Scancode key);
 private:
+    
+    // Keys held during current frame
+    
     std::map<SDL_Scancode, bool> _heldKeys;
+    
+    // Keys pressed during current frame
+    
     std::map<SDL_Scancode, bool> _pressedKeys;
+    
+    // Keys released during current frame
+    
     std::map<SDL_Scancode, bool> _releasedKeys;
 };
 

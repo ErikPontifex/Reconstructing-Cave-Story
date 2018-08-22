@@ -15,6 +15,7 @@
 		07BD84BF212B9623004AFA3B /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD84BD212B9623004AFA3B /* input.cpp */; };
 		07BD84C4212BB66C004AFA3B /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD84C3212BB66C004AFA3B /* SDL2_image.framework */; };
 		07BD84C7212BBA19004AFA3B /* sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD84C5212BBA19004AFA3B /* sprite.cpp */; };
+		07C9382D212C8DA700D7A816 /* animatedSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C9382B212C8DA700D7A816 /* animatedSprite.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +51,8 @@
 		07BD84C5212BBA19004AFA3B /* sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sprite.cpp; sourceTree = "<group>"; };
 		07BD84C6212BBA19004AFA3B /* sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sprite.hpp; sourceTree = "<group>"; };
 		07BD84C8212BBEC8004AFA3B /* globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = globals.h; sourceTree = "<group>"; };
+		07C9382B212C8DA700D7A816 /* animatedSprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = animatedSprite.cpp; sourceTree = "<group>"; };
+		07C9382C212C8DA700D7A816 /* animatedSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = animatedSprite.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 				07BD84C5212BBA19004AFA3B /* sprite.cpp */,
 				07BD84C6212BBA19004AFA3B /* sprite.hpp */,
 				07BD84C8212BBEC8004AFA3B /* globals.h */,
+				07C9382B212C8DA700D7A816 /* animatedSprite.cpp */,
+				07C9382C212C8DA700D7A816 /* animatedSprite.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07C9382D212C8DA700D7A816 /* animatedSprite.cpp in Sources */,
 				076D6342212A5614005804A4 /* main.cpp in Sources */,
 				076D6346212A5667005804A4 /* game.cpp in Sources */,
 				07BD84C7212BBA19004AFA3B /* sprite.cpp in Sources */,

@@ -15,7 +15,7 @@
 using namespace std;
 
 namespace  {
-    const int kFps = 60;
+    const int kFps = 50;
     const int kMaxFrameTime = 5 * 1000 / kFps;
 }
 
@@ -42,14 +42,16 @@ void Game::eventLoop() {
     SDL_Event event;
     Input input;
     
-    _player = Sprite(graphics, "content/sprites/MyChar.png", 0, 0, 16, 16, 100, 100);
+    _player = AnimatedSprite(graphics, "content/sprites/MyChar.png", 0, 0, 16, 16, 100, 100, 100);
+    _player.setupAnimations();
+    _player.playAnimation("RunRight");
     
     bool running = true;
     
+    int last_update_time_ms = SDL_GetTicks();
+    
     while (running) {
         input.beginNewFrame();
-        
-        const int start_time_ms = SDL_GetTicks();
         
         while (SDL_PollEvent(&event)) {
             cout << event.type << "\n";
@@ -62,6 +64,7 @@ void Game::eventLoop() {
                     if (event.key.repeat == 0) {
                         input.keyDownEvent(event);
                     }
+                    break;
                 case SDL_KEYUP:
                     input.keyUpEvent(event);
                     break;
@@ -76,21 +79,22 @@ void Game::eventLoop() {
         // This loop lasts 1/60th of a second
         //                 1000/60th ms
         
-        const int elapsed_time_ms = SDL_GetTicks() - start_time_ms;
-        if (1000/kFps - elapsed_time_ms > 0) {
-            SDL_Delay(1000/kFps - elapsed_time_ms);
-        }
-        
+        const int current_time_ms = SDL_GetTicks();
+        int elapsed_time_ms = current_time_ms - last_update_time_ms;
         update(std::min(elapsed_time_ms, kMaxFrameTime));
+        
+        last_update_time_ms = current_time_ms;
+        
         draw(graphics);
-        printFps(start_time_ms);
+        
     }
     
     cout << "Exiting loop\n";
 }
 
 void Game::update(float elapsedTime) {
-    
+//    printf("elapsedTime = %f\n", elapsedTime);
+    _player.update(elapsedTime);
 }
 
 void Game::draw(Graphics &graphics) {

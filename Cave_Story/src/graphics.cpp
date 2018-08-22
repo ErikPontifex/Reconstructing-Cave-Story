@@ -9,11 +9,8 @@
 #include "graphics.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
-
-namespace  {
-    const int kScreenWidth = 640;
-    const int kScreenHeight = 480;
-}
+#include "globals.h"
+using namespace globals;
 
 Graphics::Graphics() {
     SDL_CreateWindowAndRenderer(kScreenWidth,
