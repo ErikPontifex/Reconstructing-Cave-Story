@@ -13,7 +13,7 @@ namespace globals {
     const int kScreenWidth      = 640;
     const int kScreenHeight     = 480;
     
-    const int kScale            = 4;
+    const int kScale            = 2;
 }
 
 enum Direction {

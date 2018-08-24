@@ -10,13 +10,14 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include "globals.h"
+#include <iostream>
 using namespace globals;
 
 Graphics::Graphics() {
     SDL_CreateWindowAndRenderer(kScreenWidth,
                                 kScreenHeight,
-//                                0,
-                                SDL_WINDOW_FULLSCREEN_DESKTOP,
+                                0,
+//                                SDL_WINDOW_FULLSCREEN_DESKTOP,
                                 &_window,
                                 &_renderer);
     SDL_SetWindowTitle(_window, "Cave Story");
@@ -29,8 +30,14 @@ Graphics::~Graphics() {
 }
 
 SDL_Surface* Graphics::loadImage(const std::string &filePath) {
+    std::cout << "filePath = " << filePath << "\n";
+    
     if (_spriteSheets.count(filePath) == 0) {
+        std::cout << "loading image\n";
         _spriteSheets[filePath] = IMG_Load(filePath.c_str());
+        if (_spriteSheets[filePath] == NULL) {
+            std::cout << "file failed to load\n";
+        }
     }
     
     return _spriteSheets[filePath];

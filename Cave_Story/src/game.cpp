@@ -43,7 +43,7 @@ void Game::eventLoop() {
     Input input;
     
     _player = Player(graphics, 100, 100);
-    _level = Level("map 1", Vector2(100, 100), graphics);
+    _level = Level("map1", Vector2(100, 100), graphics);
     
     bool running = true;
     
