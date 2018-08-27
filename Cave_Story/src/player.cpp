@@ -15,6 +15,8 @@ namespace player_constants {
     const float kWalkingAcceleration    = 0.0012f;
     const float kMaxSpeedX              = 0.325f;
     const float kSlowdownFactor         = 0.96f;
+    const float kGravity                = 0.002f;
+    const float kGravtiyCap             = 0.005f;
     
 }
 
@@ -23,7 +25,11 @@ Player::Player() {}
 Player::Player(Graphics &graphics, float x, float y) :
     AnimatedSprite(graphics, "content/sprites/MyChar.png", 0, 0, 16, 16, x, y, 100),
     _acceleration_x(0.0f),
-    _velocity_x(0.0f)
+    _velocity_x(0.0f),
+    _dx(0),
+    _dy(0),
+    _facing(RIGHT),
+    _grounded(false)
 {
     graphics.loadImage("content/sprites/MyChar.png");
     
@@ -36,11 +42,18 @@ void Player::setupAnimations() {
         addAnimation(1, 0, 16, "IdleRight", 16, 16, Vector2(0, 0));
         addAnimation(3, 0, 0,  "RunLeft",   16, 16, Vector2(0, 0));
         addAnimation(3, 0, 16, "RunRight",  16, 16, Vector2(0, 0));
-    
 }
 
 void Player::animationDone(string currentAnimation) {
     
+}
+
+const float Player::getX() const {
+    return _x;
+}
+
+const float Player::getY() const {
+    return _y;
 }
 
 void Player::moveLeft() {
@@ -64,6 +77,15 @@ void Player::stopMoving() {
 
 
 void Player::update(float elapsedTime) {
+    
+    if (_dy <= player_constants::kGravtiyCap) {
+        _dy += player_constants::kGravtiyCap * elapsedTime;
+    }
+    
+    // Move by dy
+    
+    _y += _dy * elapsedTime;
+    
     // Move by dx
     _x += _velocity_x * elapsedTime;
     _velocity_x += _acceleration_x * elapsedTime;

@@ -30,14 +30,8 @@ Graphics::~Graphics() {
 }
 
 SDL_Surface* Graphics::loadImage(const std::string &filePath) {
-    std::cout << "filePath = " << filePath << "\n";
-    
     if (_spriteSheets.count(filePath) == 0) {
-        std::cout << "loading image\n";
         _spriteSheets[filePath] = IMG_Load(filePath.c_str());
-        if (_spriteSheets[filePath] == NULL) {
-            std::cout << "file failed to load\n";
-        }
     }
     
     return _spriteSheets[filePath];

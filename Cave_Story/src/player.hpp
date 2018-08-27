@@ -40,11 +40,15 @@ public:
     virtual void animationDone(string currentAnimation);
     virtual void setupAnimations();
     
+    const float getX() const;
+    const float getY() const;
+    
 private:
     float _dx, _dy, _acceleration_x, _velocity_x;
     
-    
     Direction _facing;
+    
+    bool _grounded;
 };
 
 #endif /* player_hpp */
