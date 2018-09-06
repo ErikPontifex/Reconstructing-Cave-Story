@@ -12,6 +12,9 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <string>
+#include "rectangle.hpp"
+#include "globals.h"
+using namespace globals;
 
 struct Graphics;
 
@@ -35,7 +38,15 @@ public:
     SDL_Texture* _spriteSheet;
     float _x, _y;
     
+    const Rectangle getBoundingBox() const;
+    
+    // Determine which side collision happened on
+    const sides::Side getCollisionSide(Rectangle &other) const;
+    
 private:
+    
+protected:
+    Rectangle _boundingBox;
     
 };
 

@@ -11,6 +11,7 @@
 
 #include "globals.h"
 #include "tile.hpp"
+#include "rectangle.hpp"
 #include <vector>
 #include <stdio.h>
 #include <string>
@@ -30,6 +31,8 @@ public:
     void update(int elapsedTime);
     void draw(Graphics & graphics);
     
+    vector<Rectangle> checkTileCollisions(const Rectangle &other);
+    
 private:
     string _mapName;
     Vector2 _spawnPoint;
@@ -43,6 +46,7 @@ private:
     
     vector<Tile> _tileList;
     vector<Tileset> _tilesets;
+    vector<Rectangle> _collisionRects;
     
     // Load map
     

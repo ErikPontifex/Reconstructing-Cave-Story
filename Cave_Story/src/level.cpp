@@ -185,6 +185,44 @@ void Level::loadMap(string mapName, Graphics &graphics) {
         }
     }
     
+    // parse out the collisions
+    XMLElement* pObjectGroup = mapNode->FirstChildElement("objectgroup");
+    if (pObjectGroup != NULL) {
+        while (pObjectGroup) {
+            const char* name = pObjectGroup->Attribute("name");
+            stringstream ss;
+            ss << name;
+            
+            if (ss.str() == "collisions") {
+                XMLElement* pObject = pObjectGroup->FirstChildElement("object");
+                if (pObject != NULL) {
+                    while (pObject) {
+                        float x, y, width, height;
+                        x = pObject->FloatAttribute("x");
+                        y = pObject->FloatAttribute("y");
+                        width = pObject->FloatAttribute("width");
+                        height = pObject->FloatAttribute("height");
+                        
+                        cout << "\nx = " << x;
+                        cout << "\ny = " << y;
+                        cout << "\nwidth = " << width;
+                        cout << "\nheight = " << height;
+                        
+                        _collisionRects.push_back(Rectangle(
+                                                            ceil(x),
+                                                            ceil(y),
+                                                            ceil(width),
+                                                            ceil(height)));
+                        
+                        pObject = pObject->NextSiblingElement("object");
+                    }
+                }
+            }
+            
+            pObjectGroup = pObjectGroup->NextSiblingElement("objectgroup");
+        }
+    }
+    
     
 }
 
@@ -197,4 +235,14 @@ void Level::draw(Graphics &graphics) {
     for (int i = 0; i < _tileList.size(); i++) {
         _tileList.at(i).draw(graphics);
     }
+}
+
+vector<Rectangle> Level::checkTileCollisions(const Rectangle &other) {
+    vector<Rectangle> others;
+    for (int i = 0; i < _collisionRects.size(); i++) {
+        if (_collisionRects.at(i).collidesWith(other)) {
+            others.push_back(_collisionRects.at(i));
+        }
+    }
+    return others;
 }

@@ -42,8 +42,8 @@ void Game::eventLoop() {
     SDL_Event event;
     Input input;
     
-    _player = Player(graphics, 100, 100);
-    _level = Level("map1", Vector2(100, 100), graphics);
+    _player = Player(graphics, 250, 100);
+    _level = Level("map1Collisions", Vector2(100, 100), graphics);
     
     bool running = true;
     
@@ -53,13 +53,11 @@ void Game::eventLoop() {
         input.beginNewFrame();
         
         while (SDL_PollEvent(&event)) {
-//            cout << event.type << "\n";
             switch (event.type) {
                 case SDL_QUIT:
                     running = false;
                     break;
                 case SDL_KEYDOWN:
-//                    cout << event.key.keysym.sym;
                     if (event.key.repeat == 0) {
                         input.keyDownEvent(event);
                     }
@@ -90,8 +88,8 @@ void Game::eventLoop() {
             
         }
         
-        // This loop lasts 1/60th of a second
-        //                 1000/60th ms
+        // This loop lasts 1/50th of a second
+        //                 1000/50th ms
         
         const int current_time_ms = SDL_GetTicks();
         int elapsed_time_ms = current_time_ms - last_update_time_ms;
@@ -107,9 +105,26 @@ void Game::eventLoop() {
 }
 
 void Game::update(float elapsedTime) {
-//    printf("elapsedTime = %f\n", elapsedTime);
     _player.update(elapsedTime);
     _level.update(elapsedTime);
+    
+    // Check collisions
+    
+    Rectangle pBB = _player.getBoundingBox();
+//    
+//    cout << "\nplayer BoundingBox right = " << pBB.getRight();
+//    cout << "\nplayer BoundingBox left = " << pBB.getLeft();
+//    cout << "\nplayer BoundingBox top = " << pBB.getTop();
+//    cout << "\nplayer BoundingBox bottom = " << pBB.getBottom();
+    
+    
+    vector<Rectangle> others = _level.checkTileCollisions(pBB);
+    if (others.size() > 0) {
+        // Player collided with at least one tile
+//        cout << "collisions are occuring\n";
+        
+        _player.handleTileCollisions(others);
+    }
 }
 
 void Game::draw(Graphics &graphics) {

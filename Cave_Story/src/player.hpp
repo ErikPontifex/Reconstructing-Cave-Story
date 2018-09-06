@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "globals.h"
 #include "animatedSprite.hpp"
+#include <iostream>
 using namespace std;
 using namespace globals;
 
@@ -39,6 +40,10 @@ public:
     
     virtual void animationDone(string currentAnimation);
     virtual void setupAnimations();
+    
+    // handles collisions with all tiles player is colliding with
+    
+    void handleTileCollisions(std::vector<Rectangle> &others);
     
     const float getX() const;
     const float getY() const;

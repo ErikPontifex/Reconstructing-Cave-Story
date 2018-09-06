@@ -10,6 +10,7 @@
 #define rectangle_hpp
 
 #include <stdio.h>
+#include <iostream>
 #include "globals.h"
 using namespace sides;
 
@@ -17,7 +18,6 @@ class Rectangle {
 
 public:
     Rectangle() {}
-    
     Rectangle(int x, int y, int width, int height) :
         _x(x),
         _y(y),
@@ -66,12 +66,14 @@ public:
             NONE;
     }
     
+    // Takes in another Rectangle and checks if the two are colliding
+    
     const bool collidesWith(const Rectangle &other) const {
         return
-            getRight() >= other.getLeft() &&
-            getLeft() <= other.getRight() &&
-            getTop() <= other.getBottom() &&
-            getBottom() >= other.getTop();
+            this->getRight() >= other.getLeft() &&
+            this->getLeft() <= other.getRight() &&
+            this->getTop() <= other.getBottom() &&
+            this->getBottom() >= other.getTop();
     }
     
     const bool isValidRectangle() const {

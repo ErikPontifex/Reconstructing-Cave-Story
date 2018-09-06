@@ -13,7 +13,7 @@ namespace globals {
     const int kScreenWidth      = 640;
     const int kScreenHeight     = 480;
     
-    const int kScale            = 2;
+    const int kScale            = 1;
 }
 
 enum Direction {
@@ -32,7 +32,9 @@ namespace sides {
         NONE
     };
     
-    const inline Side getOppositeSide(Side side) {
+    // return side opposite to whatever side was passed in
+    
+    inline Side getOppositeSide(Side side) {
         return
         side == TOP ? BOTTOM :
         side == BOTTOM ? TOP :

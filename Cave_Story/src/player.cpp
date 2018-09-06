@@ -16,7 +16,7 @@ namespace player_constants {
     const float kMaxSpeedX              = 0.325f;
     const float kSlowdownFactor         = 0.96f;
     const float kGravity                = 0.002f;
-    const float kGravtiyCap             = 0.005f;
+    const float kGravityCap             = 0.8f;
     
 }
 
@@ -28,7 +28,7 @@ Player::Player(Graphics &graphics, float x, float y) :
     _velocity_x(0.0f),
     _dx(0),
     _dy(0),
-    _facing(RIGHT),
+    _facing(Direction::RIGHT),
     _grounded(false)
 {
     graphics.loadImage("content/sprites/MyChar.png");
@@ -60,26 +60,60 @@ void Player::moveLeft() {
     _acceleration_x = -player_constants::kWalkingAcceleration;
     _dx = -player_constants::kWalkSpeed;
     playAnimation("RunLeft");
-    _facing = LEFT;
+    _facing = Direction::LEFT;
 }
 
 void Player::moveRight() {
     _acceleration_x = player_constants::kWalkingAcceleration;
     _dx = player_constants::kWalkSpeed;
     playAnimation("RunRight");
-    _facing = RIGHT;
+    _facing = Direction::RIGHT;
 }
 
 void Player::stopMoving() {
     _acceleration_x = 0.0f;
-    playAnimation(_facing == RIGHT ? "IdleRight" : "IdleLeft");
+    playAnimation(_facing == Direction::RIGHT ? "IdleRight" : "IdleLeft");
+}
+
+void Player::handleTileCollisions(std::vector<Rectangle> &others) {
+    // Figure out side collision happened on and move player accordingly
+    
+    for (int i = 0; i < others.size(); i++) {
+        sides::Side collisionSide = Sprite::getCollisionSide(others.at(i));
+        if (collisionSide != sides::NONE) {
+            switch (collisionSide) {
+                case sides::TOP:
+                    _y = others.at(i).getBottom() + 1;
+                    _dy = 0.0f;
+                    break;
+                case sides::BOTTOM:
+                    cout << "\ncolliding with the top of a rectangle";
+                    cout << "\nother rectangle top = " << others.at(i).getTop();
+                    cout << "\nthis bottom = " << getBoundingBox().getBottom();
+                    this->_y = others.at(i).getTop() - this->_boundingBox.getHeight() - 1;
+                    _dy = 0;
+                    _grounded = true;
+                    break;
+                case sides::LEFT:
+                    _x = others.at(i).getRight() + 1;
+                    _velocity_x = 0;
+                    break;
+                case sides::RIGHT:
+                    _x = others.at(i).getLeft() - _boundingBox.getWidth() - 1;
+                    _velocity_x = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }
 
 
 void Player::update(float elapsedTime) {
     
-    if (_dy <= player_constants::kGravtiyCap) {
-        _dy += player_constants::kGravtiyCap * elapsedTime;
+    if (_dy <= player_constants::kGravityCap) {
+        _dy += player_constants::kGravity * elapsedTime;
     }
     
     // Move by dy
@@ -99,6 +133,12 @@ void Player::update(float elapsedTime) {
     else { // _acceleration_x == 0.0f
         _velocity_x *= player_constants::kSlowdownFactor;
     }
+//    
+//    cout << "\nplayer x = " << _x;
+//    cout << "\nplayer y = " << _y;
+    
+//    cout << "\nplayer velocity x = " << _velocity_x;
+//    cout << "\nplayer dy = " << _dy;
     
     AnimatedSprite::update(elapsedTime);
 }
