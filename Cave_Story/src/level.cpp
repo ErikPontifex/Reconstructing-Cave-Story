@@ -39,7 +39,7 @@ void Level::loadMap(string mapName, Graphics &graphics) {
     // Represents entire XML document
     XMLDocument doc;
     stringstream ss;
-    ss << "content/maps/" << mapName << ".tmx";
+    ss << "content/maps/" << mapName << ".xml";
     
     doc.LoadFile(ss.str().c_str());
     
@@ -203,16 +203,16 @@ void Level::loadMap(string mapName, Graphics &graphics) {
                         width = pObject->FloatAttribute("width");
                         height = pObject->FloatAttribute("height");
                         
-                        cout << "\nx = " << x;
-                        cout << "\ny = " << y;
-                        cout << "\nwidth = " << width;
-                        cout << "\nheight = " << height;
+                        cout << "\nx = " << x * kScale;
+                        cout << "\ny = " << y * kScale;
+                        cout << "\nwidth = " << width * kScale;
+                        cout << "\nheight = " << height * kScale;
                         
                         _collisionRects.push_back(Rectangle(
-                                                            ceil(x),
-                                                            ceil(y),
-                                                            ceil(width),
-                                                            ceil(height)));
+                                                            ceil(x) * kScale - 2,
+                                                            ceil(y) * kScale - 2,
+                                                            ceil(width) * kScale - 2,
+                                                            ceil(height)  * kScale - 2));
                         
                         pObject = pObject->NextSiblingElement("object");
                     }

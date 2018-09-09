@@ -95,10 +95,16 @@ void Player::handleTileCollisions(std::vector<Rectangle> &others) {
                     _grounded = true;
                     break;
                 case sides::LEFT:
+                    cout << "\ncolliding with the right side of a rectangle";
+                    cout << "\nother rectangle right = " << others.at(i).getRight();
+                    cout << "\nthis left = " << getBoundingBox().getLeft();
                     _x = others.at(i).getRight() + 1;
                     _velocity_x = 0;
                     break;
                 case sides::RIGHT:
+                    cout << "\ncolliding with the left side of a rectangle";
+                    cout << "\nother rectangle left = " << others.at(i).getLeft();
+                    cout << "\nthis right = " << getBoundingBox().getRight();
                     _x = others.at(i).getLeft() - _boundingBox.getWidth() - 1;
                     _velocity_x = 0;
                     break;

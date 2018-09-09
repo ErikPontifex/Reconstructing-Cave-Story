@@ -42,8 +42,8 @@ void Game::eventLoop() {
     SDL_Event event;
     Input input;
     
-    _player = Player(graphics, 250, 100);
-    _level = Level("map1Collisions", Vector2(100, 100), graphics);
+    _player = Player(graphics, kScreenWidth / 2, kScreenHeight / 2);
+    _level = Level("cave2", Vector2(100, 100), graphics);
     
     bool running = true;
     

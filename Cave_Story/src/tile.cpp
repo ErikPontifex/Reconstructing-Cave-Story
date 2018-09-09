@@ -17,7 +17,7 @@ Tile::Tile(SDL_Texture* tileset, Vector2 size, Vector2 tilesetPosition, Vector2 
     _tileset(tileset),
     _size(size),
     _tilesetPosition(tilesetPosition),
-    _position(Vector2(position.x, position.y))
+    _position(Vector2(position.x * kScale, position.y * kScale))
 {}
 
 void Tile::update(int elapsedTime) {
@@ -28,8 +28,8 @@ void Tile::draw(Graphics &graphics) {
     SDL_Rect destRect = {
                         _position.x,
                         _position.y,
-                        _size.x,
-                        _size.y
+                        _size.x * kScale,
+                        _size.y * kScale
     };
     
     SDL_Rect sourceRect = {

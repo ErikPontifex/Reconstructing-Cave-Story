@@ -36,19 +36,19 @@ Sprite::Sprite(Graphics &graphics,
         printf("\nError: Unable to load image\n");
     }
     
-    _boundingBox = Rectangle(_x, _y, width, height);
+    _boundingBox = Rectangle(_x, _y, width * kScale, height * kScale);
     
 }
 
 Sprite::~Sprite() {}
 
 void Sprite::draw(Graphics &graphics, int x, int y) {
-    SDL_Rect destinationRectangle = {x, y, _sourceRect.w, _sourceRect.h};
+    SDL_Rect destinationRectangle = {x, y, _sourceRect.w * kScale, _sourceRect.h * kScale};
     graphics.blitSurface(_spriteSheet, &_sourceRect, &destinationRectangle);
 }
 
 void Sprite::update() {
-    _boundingBox = Rectangle(_x, _y, _sourceRect.w, _sourceRect.h);
+    _boundingBox = Rectangle(_x, _y, _sourceRect.w * kScale, _sourceRect.h * kScale);
 }
 
 const Rectangle Sprite::getBoundingBox() const {

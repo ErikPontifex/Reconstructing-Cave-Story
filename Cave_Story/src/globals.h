@@ -10,10 +10,10 @@
 #define globals_h
 
 namespace globals {
-    const int kScreenWidth      = 640;
-    const int kScreenHeight     = 480;
+    const int kScreenWidth      = 320;
+    const int kScreenHeight     = 240;
     
-    const int kScale            = 1;
+    const int kScale            = 2;
 }
 
 enum Direction {

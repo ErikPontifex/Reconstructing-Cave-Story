@@ -14,8 +14,8 @@
 using namespace globals;
 
 Graphics::Graphics() {
-    SDL_CreateWindowAndRenderer(kScreenWidth,
-                                kScreenHeight,
+    SDL_CreateWindowAndRenderer(kScreenWidth * kScale,
+                                kScreenHeight * kScale,
                                 0,
 //                                SDL_WINDOW_FULLSCREEN_DESKTOP,
                                 &_window,
