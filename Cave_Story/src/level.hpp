@@ -33,6 +33,8 @@ public:
     
     vector<Rectangle> checkTileCollisions(const Rectangle &other);
     
+    const Vector2 getPlayerSpawnPoint() const;
+    
 private:
     string _mapName;
     Vector2 _spawnPoint;

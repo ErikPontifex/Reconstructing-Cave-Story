@@ -39,7 +39,7 @@ void Level::loadMap(string mapName, Graphics &graphics) {
     // Represents entire XML document
     XMLDocument doc;
     stringstream ss;
-    ss << "content/maps/" << mapName << ".xml";
+    ss << "content/maps/" << mapName << ".tmx";
     
     doc.LoadFile(ss.str().c_str());
     
@@ -209,12 +209,32 @@ void Level::loadMap(string mapName, Graphics &graphics) {
                         cout << "\nheight = " << height * kScale;
                         
                         _collisionRects.push_back(Rectangle(
-                                                            ceil(x) * kScale - 2,
-                                                            ceil(y) * kScale - 2,
-                                                            ceil(width) * kScale - 2,
-                                                            ceil(height)  * kScale - 2));
+                                                            ceil(x) * kScale,
+                                                            ceil(y) * kScale,
+                                                            ceil(width) * kScale,
+                                                            ceil(height)  * kScale));
                         
                         pObject = pObject->NextSiblingElement("object");
+                    }
+                }
+            }
+            
+            else if (ss.str() == "spawn points") {
+                XMLElement* pObject = pObjectGroup->FirstChildElement("object");
+                if (pObject != NULL) {
+                    while (pObject) {
+                        float x = pObject->FloatAttribute("x");
+                        float y = pObject->FloatAttribute("y");
+                        
+                        const char* name = pObject->Attribute("name");
+                        stringstream ss;
+                        ss << name;
+                        if (ss.str() == "player") {
+                            _spawnPoint = Vector2(ceil(x) * kScale, ceil(y) * kScale);
+                        }
+                        
+                        pObject = pObject->NextSiblingElement("object");
+                        
                     }
                 }
             }
@@ -245,4 +265,8 @@ vector<Rectangle> Level::checkTileCollisions(const Rectangle &other) {
         }
     }
     return others;
+}
+
+const Vector2 Level::getPlayerSpawnPoint() const {
+    return _spawnPoint;
 }
