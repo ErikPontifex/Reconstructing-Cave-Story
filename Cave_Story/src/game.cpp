@@ -81,6 +81,10 @@ void Game::eventLoop() {
                 _player.moveRight();
             }
             
+            if (input.wasKeyPressed(SDL_SCANCODE_Z)) {
+                _player.jump();
+            }
+            
             if (!input.isKeyHeld(SDL_SCANCODE_LEFT) &&
                 !input.isKeyHeld(SDL_SCANCODE_RIGHT)) {
                 _player.stopMoving();
@@ -124,6 +128,11 @@ void Game::update(float elapsedTime) {
 //        cout << "collisions are occuring\n";
         
         _player.handleTileCollisions(others);
+    }
+    
+    vector<Slope> otherSlopes = _level.checkSlopeCollisions(_player.getBoundingBox());
+    if (otherSlopes.size()) {
+        _player.handleSlopeCollisions(otherSlopes);
     }
 }
 

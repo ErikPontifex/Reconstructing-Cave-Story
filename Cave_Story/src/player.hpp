@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "globals.h"
+#include "slope.hpp"
 #include "animatedSprite.hpp"
 #include <iostream>
 using namespace std;
@@ -38,12 +39,18 @@ public:
     
     void stopMoving();
     
+    void jump();
+    
     virtual void animationDone(string currentAnimation);
     virtual void setupAnimations();
     
     // handles collisions with all tiles player is colliding with
     
     void handleTileCollisions(std::vector<Rectangle> &others);
+    
+    // handles collisions with all slopes player is colliding with
+    
+    void handleSlopeCollisions(std::vector<Slope> &others);
     
     const float getX() const;
     const float getY() const;

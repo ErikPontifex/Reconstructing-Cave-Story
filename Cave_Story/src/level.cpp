@@ -314,6 +314,17 @@ vector<Rectangle> Level::checkTileCollisions(const Rectangle &other) {
     return others;
 }
 
+vector<Slope> Level::checkSlopeCollisions(const Rectangle &other) {
+    vector<Slope> others;
+    for (int i = 0; i < _slopes.size(); i++) {
+        if (_slopes.at(i).collidesWith(other)) {
+            others.push_back(_slopes.at(i));
+        }
+    }
+    return others;
+    
+}
+
 const Vector2 Level::getPlayerSpawnPoint() const {
     return _spawnPoint;
 }

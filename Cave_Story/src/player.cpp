@@ -17,6 +17,7 @@ namespace player_constants {
     const float kSlowdownFactor         = 0.96f;
     const float kGravity                = 0.002f;
     const float kGravityCap             = 0.8f;
+    const float kJumpSpeed              = 0.7f;
     
 }
 
@@ -75,6 +76,14 @@ void Player::stopMoving() {
     playAnimation(_facing == Direction::RIGHT ? "IdleRight" : "IdleLeft");
 }
 
+void Player::jump() {
+    if (_grounded) {
+        _dy = 0;
+        _dy -= player_constants::kJumpSpeed;
+        _grounded = false;
+    }
+}
+
 void Player::handleTileCollisions(std::vector<Rectangle> &others) {
     // Figure out side collision happened on and move player accordingly
     
@@ -83,8 +92,12 @@ void Player::handleTileCollisions(std::vector<Rectangle> &others) {
         if (collisionSide != sides::NONE) {
             switch (collisionSide) {
                 case sides::TOP:
-                    _y = others.at(i).getBottom() + 1;
                     _dy = 0.0f;
+                    _y = others.at(i).getBottom() + 1;
+                    if (_grounded) {
+                        _velocity_x = 0;
+                        _x -= _facing == Direction::RIGHT ? 0.5f : -0.5f;
+                    }
                     break;
                 case sides::BOTTOM:
                     cout << "\ncolliding with the top of a rectangle";
@@ -113,6 +126,28 @@ void Player::handleTileCollisions(std::vector<Rectangle> &others) {
             }
         }
     }
+}
+
+void Player::handleSlopeCollisions(std::vector<Slope> &others) {
+    for (int i = 0; i < others.size(); i++) {
+        // calculate where on slope the player's bottom center is touching
+        // use y=mx+b to figure out the y position to place him at
+        // first calculate "b" (slope intercept) using one of the points
+        int b = (others.at(i).getP1().y - (others.at(i).getSlope() * fabs(others.at(i).getP1().x)));
+        
+        // get player's center x
+        int centerX = _boundingBox.getCenterX();
+        
+        // pass centerX into the equation y = mx + b (using our newly found b and x) to get the new y position
+        
+        int newY = (others.at(i).getSlope() * centerX) + b - 8;
+        
+        if (_grounded) {
+            _y = newY - _boundingBox.getHeight();
+            _grounded = true;
+        }
+    }
+    
 }
 
 
