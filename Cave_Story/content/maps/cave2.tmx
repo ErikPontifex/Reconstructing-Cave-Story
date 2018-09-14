@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="16" tileheight="16" infinite="0" nextobjectid="24">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="16" tileheight="16" infinite="0" nextobjectid="31">
  <tileset firstgid="1" source="content/tilesets/PrtCave2.png"/>
  <layer name="Tile Layer 1" width="20" height="16">
   <data>
@@ -328,6 +328,26 @@
  <objectgroup name="spawn points">
   <object id="23" name="player" x="147.372" y="49.6141" width="10.2903" height="11.7604">
    <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="slopes">
+  <object id="25" x="144.257" y="191.893">
+   <polyline points="0,0 -31.7949,-15.8413"/>
+  </object>
+  <object id="26" x="112.043" y="128.223">
+   <polyline points="0,0 -32.0122,-16.0061"/>
+  </object>
+  <object id="27" x="160.931" y="64.1985">
+   <polyline points="0,0 14.4403,-4.00153"/>
+  </object>
+  <object id="28" x="224.608" y="127.875">
+   <polyline points="0,0 15.4842,-4.00153"/>
+  </object>
+  <object id="29" x="80.9005" y="63.5026">
+   <polyline points="0,0 31.3163,-15.4842"/>
+  </object>
+  <object id="30" x="175.731" y="192.567">
+   <polyline points="0,0 32.4453,-21.7471"/>
   </object>
  </objectgroup>
  <objectgroup name="collisions">

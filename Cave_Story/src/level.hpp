@@ -11,6 +11,7 @@
 
 #include "globals.h"
 #include "tile.hpp"
+#include "slope.hpp"
 #include "rectangle.hpp"
 #include <vector>
 #include <stdio.h>
@@ -32,6 +33,7 @@ public:
     void draw(Graphics & graphics);
     
     vector<Rectangle> checkTileCollisions(const Rectangle &other);
+    vector<Slope> checkSlopeCollisions(const Rectangle &other);
     
     const Vector2 getPlayerSpawnPoint() const;
     
@@ -49,6 +51,7 @@ private:
     vector<Tile> _tileList;
     vector<Tileset> _tilesets;
     vector<Rectangle> _collisionRects;
+    vector<Slope> _slopes;
     
     // Load map
     
